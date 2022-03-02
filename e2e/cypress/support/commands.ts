@@ -1,25 +1,20 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('signupAndLogin', (usernameOne, passwordOne, usernameTwo, passwordTwo) => {
+    cy.session([usernameOne, passwordOne, usernameTwo, passwordTwo], () => {
+      cy.visit('/signup');
+      cy.get("input[type='username']").type(usernameOne)
+      cy.get(".sc-pVTFL.fpjaXA").eq(1).type(passwordOne)
+      cy.get(".sc-pVTFL.fpjaXA").eq(2).type(passwordOne)
+      cy.get(".sc-kDTinF.bzvhtv").click()
+      cy.visit('/signup');
+      cy.get("input[type='username']").type(usernameTwo)
+      cy.get(".sc-pVTFL.fpjaXA").eq(1).type(passwordTwo)
+      cy.get(".sc-pVTFL.fpjaXA").eq(2).type(passwordTwo)
+      cy.get(".sc-kDTinF.bzvhtv").click()
+      cy.visit("/login")
+      cy.get("input[type='username']").type(usernameOne)
+      cy.get("input[type='password']").type(passwordOne)
+      cy.get(".sc-kDTinF.bzvhtv").click()
+    })
+  })
+  
+  export {}
