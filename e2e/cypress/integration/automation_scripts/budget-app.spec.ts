@@ -26,6 +26,13 @@ describe("Verify End to End Test of Budget Web App", function() {
         cy.signIn("UserOne", "@Test123")
     })
 
+    it("Add a budget", () => {
+        cy.addBudget()
+    })
+
+    it("Add a category", () => {
+        cy.addCategory()
+    })
+
 })
 
-export {}

@@ -18,5 +18,20 @@ declare namespace Cypress {
      */
        signIn(username: string, password: string)
     }
+
+    interface Chainable {
+  
+      /**
+       * Add a budget
+       */
+         addBudget()
+      }
+    interface Chainable {
+  
+      /**
+       * Add a category
+       */
+         addCategory()
+      }
 }
   
