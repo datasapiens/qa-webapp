@@ -5,7 +5,7 @@ declare namespace Cypress {
       /**
        * Signup
        */
-       signupAndLogin(usernameOne: string, passwordOne: string, usernameTwo: string, passwordTwo: string)
+       signUp(username: string, username: string)
     }
   }
   
