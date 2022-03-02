@@ -22,6 +22,10 @@ describe("Verify End to End Test of Budget Web App", function() {
         });
     }
 
+    it("Sign-In", () => {
+        cy.signIn("UserOne", "@Test123")
+    })
+
 })
 
 export {}
