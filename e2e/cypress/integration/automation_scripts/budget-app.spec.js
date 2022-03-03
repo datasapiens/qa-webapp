@@ -1,10 +1,27 @@
 describe("Verify End to End Test of Budget Web App", function() {
 
+    let userData;
+    let budgetData;
+    let categoryUserOne;
+    let categoryUserTwo;
+
     before(() => {
         cy.clearLocalStorageSnapshot();
       });
     
       beforeEach(() => {
+        cy.fixture("userTestData").then(function(user){
+            userData = user
+        })
+        cy.fixture("budgetTestData").then(function(budget){
+            budgetData = budget
+        })
+        cy.fixture("categoryTestUserOne").then(function(categoryOne){
+            categoryUserOne = categoryOne
+        })
+        cy.fixture("categoryTestUserTwo").then(function(categoryTwo){
+            categoryUserTwo = categoryTwo
+        })
         cy.restoreLocalStorage();
       });
     
@@ -23,15 +40,48 @@ describe("Verify End to End Test of Budget Web App", function() {
     }
 
     it("Sign-In", () => {
-        cy.signIn("UserOne", "@Test123")
+        cy.task('log', userData + "Logging in")
+        cy.signIn(userData.userOneUsername, userData.userOnePassword)
     })
 
-    it("Add a budget", () => {
-        cy.addBudget()
+    it("Add multiple budgets", () => {
+        cy.addBudgets(budgetData.budgetUserOne, budgetData.budgetUserTwo)
+        cy.task('log', "Multiple budgets have been added")
     })
 
-    it("Add a category", () => {
-        cy.addCategory()
+    it("Add another user to the budget", () => {
+        cy.get(".sc-jrQzAO.hDXECM", {timeout: 15000}).eq(1).select(userData.userTwoUsername)
+        cy.task('log', "User Two has been assigned to a budget")
+    })
+
+    it("Add multiple categories for User One", () => {
+        cy.get(".sc-eCImPb.bnYItG").eq(0).click()
+        cy.addCategoriesForUserOne(categoryUserOne.firstCategoryName, categoryUserOne.firstCategory, categoryUserOne.firstCategoryValue, categoryUserOne.firstCategoryExpense)
+        cy.task('log', "First category has been created for User One")
+        cy.addsecondCategoriesForUserOne(categoryUserOne.secondCategoryName, categoryUserOne.secondCategory, categoryUserOne.secondCategoryValue, categoryUserOne.secondCategoryExpense)
+        cy.task('log', "Second category has been created for User One")
+        cy.get(".sc-kDTinF.fMjHiC.sc-crHmcD.dVfNok").click()
+    })
+
+    it("Add multiple categories for User Two", () => {
+        cy.get(".sc-eCImPb.bnYItG").eq(1).click()
+        cy.addCategoriesForUserTwo(categoryUserTwo.firstCategoryName, categoryUserTwo.firstCategory, categoryUserTwo.firstCategoryValue, categoryUserTwo.firstCategoryExpense)
+        cy.task('log', "First category has been created for User One")
+        cy.addsecondCategoriesForUserTwo(categoryUserTwo.secondCategoryName, categoryUserTwo.secondCategory, categoryUserTwo.secondCategoryValue, categoryUserTwo.secondCategoryExpense)
+        cy.task('log', "Second category has been created for User One")
+    })
+
+    it("Verify Income/Expense stats for User One", () => {
+        cy.verifyStatsForUserOne(budgetData.budgetUserOne, userData.userOneUsername, categoryUserOne.firstCategoryExpense)
+    })
+
+    it("Verify Income/Expense stats for User Two", () => {
+        cy.verifyStatsForUserTwo(budgetData.budgetUserTwo, userData.userTwoUsername, categoryUserTwo.secondCategoryExpense)
+    })
+    
+    it("Delete budget's of both users", () => {
+        cy.deleteBudget()
+        cy.task("log", "Budget's for both users have been deleted")
     })
 
 })
