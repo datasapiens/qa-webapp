@@ -1,8 +1,10 @@
-FROM cypress/included:4.1.0
-
+FROM cypress/base:14
 WORKDIR /app
 
-COPY ./cypress ./cypress
-COPY ./cypress.json ./cypress.json
+COPY package.json .
+COPY package-lock.json .
 
-RUN npx cypress run 
+ENV CI=1
+RUN npm ci
+
+RUN npx cypress verify
