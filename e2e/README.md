@@ -114,7 +114,7 @@ docker-compose up
 
 ### Using Test Runner
 
-Test runner can be built locally and used to test the automated scripts. For this test runner should be opened. 
+Test runner can be built locally and used to test the automated scripts. For this test runner should be opened. In order to open the test run, go inside the `e2e` folder and then use the command below:
 
 ```
 make test-gui

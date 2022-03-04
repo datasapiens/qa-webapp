@@ -3,7 +3,7 @@ describe("Verify End to End Test of Budget Web App", function() {
     let userData;
     let budgetData;
     let categoryUserOne;
-    let categoryUserTwo;
+    let categoryMultiUser;
 
     before(() => {
         cy.clearLocalStorageSnapshot();
@@ -20,7 +20,7 @@ describe("Verify End to End Test of Budget Web App", function() {
             categoryUserOne = categoryOne
         })
         cy.fixture("categoryTestUserTwo").then(function(categoryTwo){
-            categoryUserTwo = categoryTwo
+            categoryMultiUser = categoryTwo
         })
         cy.restoreLocalStorage();
       });
@@ -45,7 +45,7 @@ describe("Verify End to End Test of Budget Web App", function() {
     })
 
     it("Add multiple budgets", () => {
-        cy.addBudgets(budgetData.budgetUserOne, budgetData.budgetUserTwo)
+        cy.addBudgets(budgetData.budgetUserOne, budgetData.budgetMultiUser)
         cy.task('log', "Multiple budgets have been added")
     })
 
@@ -65,9 +65,9 @@ describe("Verify End to End Test of Budget Web App", function() {
 
     it("Add categories for Multi User Budget", () => {
         cy.get(".sc-eCImPb.bnYItG").eq(1).click()
-        cy.addCategory(categoryUserTwo.firstCategoryName, categoryUserTwo.firstCategory, categoryUserTwo.firstCategoryValue, categoryUserTwo.firstCategoryExpense)
+        cy.addCategory(categoryMultiUser.firstCategoryName, categoryMultiUser.firstCategory, categoryMultiUser.firstCategoryValue, categoryMultiUser.firstCategoryExpense)
         cy.task('log', "First category has been created for Multi User Budget")
-        cy.addCategory(categoryUserTwo.secondCategoryName, categoryUserTwo.secondCategory, categoryUserTwo.secondCategoryValue, categoryUserTwo.secondCategoryExpense, userData.userTwoUsername)
+        cy.addCategory(categoryMultiUser.secondCategoryName, categoryMultiUser.secondCategory, categoryMultiUser.secondCategoryValue, categoryMultiUser.secondCategoryExpense, userData.userTwoUsername)
         cy.task('log', "Second category has been created for Multi User Budget")
     })
 
@@ -76,7 +76,7 @@ describe("Verify End to End Test of Budget Web App", function() {
     })
 
     it("Verify Income/Expense stats for User Two", () => {
-        cy.verifyStats(budgetData.budgetUserTwo, userData.userTwoUsername, categoryUserTwo.secondCategoryExpense, false)
+        cy.verifyStats(budgetData.budgetMultiUser, userData.userTwoUsername, categoryMultiUser.secondCategoryExpense, false)
     })
     
     it("Delete budget's of both users", () => {

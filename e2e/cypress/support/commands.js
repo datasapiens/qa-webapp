@@ -8,7 +8,7 @@ Cypress.Commands.add('signUp', (username, password) => {
     cy.get("input[type='username']").type(username)
     cy.get(".sc-pVTFL.fpjaXA").eq(1).type(password)
     cy.get(".sc-pVTFL.fpjaXA").eq(2).type(password)
-    cy.get(".sc-kDTinF.bzvhtv").click()
+    cy.get(".sc-kDTinF.bzvhtv").invoke("removeAttr","disabled").click()
 })
 
 Cypress.Commands.add('signIn', (username, password) => {
@@ -30,9 +30,9 @@ Cypress.Commands.add('addBudgets', (budgetForUserOne, budgetForUserTwo) => {
      * @param budgetForUserTwo — Name of the second budget of second user
      */
     cy.get(".sc-pVTFL.fpjaXA").type(budgetForUserOne)
-    cy.get(".sc-kDTinF.iOwzpW").should('not.be.disabled').click()
+    cy.get(".sc-kDTinF.iOwzpW").invoke("removeAttr","disabled").click()
     cy.get(".sc-pVTFL.fpjaXA").type(budgetForUserTwo)
-    cy.get(".sc-kDTinF.iOwzpW").should('not.be.disabled').click()
+    cy.get(".sc-kDTinF.iOwzpW").invoke("removeAttr","disabled").click()
 })
 
 Cypress.Commands.add('addCategory', (userCategory, categoryName, categoryDOMValue, addedExpense, user ) => {
