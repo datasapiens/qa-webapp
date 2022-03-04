@@ -40,7 +40,7 @@ describe("Verify End to End Test of Budget Web App", function() {
     }
 
     it("Sign-In", () => {
-        cy.task('log', userData + "Logging in")
+        cy.task('log', userData.userOneUsername + "Logging in")
         cy.signIn(userData.userOneUsername, userData.userOnePassword)
     })
 
@@ -56,27 +56,27 @@ describe("Verify End to End Test of Budget Web App", function() {
 
     it("Add multiple categories for User One", () => {
         cy.get(".sc-eCImPb.bnYItG").eq(0).click()
-        cy.addCategoriesForUserOne(categoryUserOne.firstCategoryName, categoryUserOne.firstCategory, categoryUserOne.firstCategoryValue, categoryUserOne.firstCategoryExpense)
+        cy.addCategory(categoryUserOne.firstCategoryName, categoryUserOne.firstCategory, categoryUserOne.firstCategoryValue, categoryUserOne.firstCategoryExpense)
         cy.task('log', "First category has been created for User One")
-        cy.addsecondCategoriesForUserOne(categoryUserOne.secondCategoryName, categoryUserOne.secondCategory, categoryUserOne.secondCategoryValue, categoryUserOne.secondCategoryExpense)
+        cy.addCategory(categoryUserOne.secondCategoryName, categoryUserOne.secondCategory, categoryUserOne.secondCategoryValue, categoryUserOne.secondCategoryExpense, userData.userOneUsername)
         cy.task('log', "Second category has been created for User One")
         cy.get(".sc-kDTinF.fMjHiC.sc-crHmcD.dVfNok").click()
     })
 
     it("Add multiple categories for User Two", () => {
         cy.get(".sc-eCImPb.bnYItG").eq(1).click()
-        cy.addCategoriesForUserTwo(categoryUserTwo.firstCategoryName, categoryUserTwo.firstCategory, categoryUserTwo.firstCategoryValue, categoryUserTwo.firstCategoryExpense)
+        cy.addCategory(categoryUserTwo.firstCategoryName, categoryUserTwo.firstCategory, categoryUserTwo.firstCategoryValue, categoryUserTwo.firstCategoryExpense)
         cy.task('log', "First category has been created for User One")
-        cy.addsecondCategoriesForUserTwo(categoryUserTwo.secondCategoryName, categoryUserTwo.secondCategory, categoryUserTwo.secondCategoryValue, categoryUserTwo.secondCategoryExpense)
+        cy.addCategory(categoryUserTwo.secondCategoryName, categoryUserTwo.secondCategory, categoryUserTwo.secondCategoryValue, categoryUserTwo.secondCategoryExpense, userData.userTwoUsername)
         cy.task('log', "Second category has been created for User One")
     })
 
     it("Verify Income/Expense stats for User One", () => {
-        cy.verifyStatsForUserOne(budgetData.budgetUserOne, userData.userOneUsername, categoryUserOne.firstCategoryExpense)
+        cy.verifyStats(budgetData.budgetUserOne, userData.userOneUsername, categoryUserOne.firstCategoryExpense, true)
     })
 
     it("Verify Income/Expense stats for User Two", () => {
-        cy.verifyStatsForUserTwo(budgetData.budgetUserTwo, userData.userTwoUsername, categoryUserTwo.secondCategoryExpense)
+        cy.verifyStats(budgetData.budgetUserTwo, userData.userTwoUsername, categoryUserTwo.secondCategoryExpense, false)
     })
     
     it("Delete budget's of both users", () => {
