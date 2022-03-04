@@ -40,7 +40,7 @@ describe("Verify End to End Test of Budget Web App", function() {
     }
 
     it("Sign-In", () => {
-        cy.task('log', userData.userOneUsername + "Logging in")
+        cy.task('log', userData.userOneUsername + " Logging in")
         cy.signIn(userData.userOneUsername, userData.userOnePassword)
     })
 

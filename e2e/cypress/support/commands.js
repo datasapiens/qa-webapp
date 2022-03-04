@@ -77,10 +77,10 @@ Cypress.Commands.add('verifyStats', (budget, user, addedIncome, flag) => {
             var correctStat = expenseForUser[2] == addedIncome
         }
         if(correctStat){
-            cy.task('log', "The stats of"+user+"is correct")
+            cy.task('log', "The stats of "+user+" is correct")
         }
         else{
-            throw new Error("The stats of"+user+"is incorrect")
+            throw new Error("The stats of "+user+" is incorrect")
         }
     })
 })
