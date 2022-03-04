@@ -29,6 +29,7 @@ A yml file has been included which is intended to run cypress test script on eac
 
 The project structure and how each sub-folders are utilized are listed below:
 
+```
 e2e
 └──cypress
     └── Fixtures
@@ -45,6 +46,7 @@ e2e
         └── index.js
 └── cypress.json
 └── package.json
+```
 
 - Fixtures: 
     All test data has been stored inside fixtures folder. This is a recommended practice encouraged by cypress and, allows effective capture of test data in our main test suite file.
@@ -101,10 +103,10 @@ make test-gui
 ### Using docker compose
 
 Use docker compose to build services
+
+```
 docker-compose build
 ```
-Use docker compose to run services.
-
 ```
 docker-compose up
 ```
@@ -116,6 +118,7 @@ Test runner can be built locally and used to test the automated scripts. For thi
 ```
 make test-gui
 ```
+
 OR,
 
 ```
