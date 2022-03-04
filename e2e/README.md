@@ -61,13 +61,14 @@ e2e
 
 ## Test Cases Covered
 
-- [x] Verify sign-up of multiple users
-- [x] Verify log-in functionality
-- [x] Verify budgets can be created
-- [x] Verify budget can be allocated to another user
-- [x] Verify multiple categories can be added to budget of multiple users
-- [x] Compare the expense for categories in Stats page
-- [x] Verify deletion of the budget created
+- [x] Verify sign-up of multiple users.
+- [x] Verify log-in functionality.
+- [x] Verify budgets can be created.
+- [x] Verify budget can be allocated to another user.
+- [x] Verify multiple categories can be added to a single user budget.
+- [x] Verify multiple categories can be added to a multi-user budget.
+- [x] Compare the expense for categories with respect to users in Stats page.
+- [x] Verify deletion of the budget created.
 
 ## Testing/Execution Strategy
 

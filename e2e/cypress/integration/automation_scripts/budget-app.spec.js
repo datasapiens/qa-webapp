@@ -49,12 +49,12 @@ describe("Verify End to End Test of Budget Web App", function() {
         cy.task('log', "Multiple budgets have been added")
     })
 
-    it("Add another user to the budget", () => {
+    it("Add multi user to the budget", () => {
         cy.get(".sc-jrQzAO.hDXECM", {timeout: 15000}).eq(1).select(userData.userTwoUsername)
-        cy.task('log', "User Two has been assigned to a budget")
+        cy.task('log', "User Two has been added to a budget")
     })
 
-    it("Add multiple categories for User One", () => {
+    it("Add categories for single user budget - userOne", () => {
         cy.get(".sc-eCImPb.bnYItG").eq(0).click()
         cy.addCategory(categoryUserOne.firstCategoryName, categoryUserOne.firstCategory, categoryUserOne.firstCategoryValue, categoryUserOne.firstCategoryExpense)
         cy.task('log', "First category has been created for User One")
@@ -63,12 +63,12 @@ describe("Verify End to End Test of Budget Web App", function() {
         cy.get(".sc-kDTinF.fMjHiC.sc-crHmcD.dVfNok").click()
     })
 
-    it("Add multiple categories for User Two", () => {
+    it("Add categories for Multi User Budget", () => {
         cy.get(".sc-eCImPb.bnYItG").eq(1).click()
         cy.addCategory(categoryUserTwo.firstCategoryName, categoryUserTwo.firstCategory, categoryUserTwo.firstCategoryValue, categoryUserTwo.firstCategoryExpense)
-        cy.task('log', "First category has been created for User One")
+        cy.task('log', "First category has been created for Multi User Budget")
         cy.addCategory(categoryUserTwo.secondCategoryName, categoryUserTwo.secondCategory, categoryUserTwo.secondCategoryValue, categoryUserTwo.secondCategoryExpense, userData.userTwoUsername)
-        cy.task('log', "Second category has been created for User One")
+        cy.task('log', "Second category has been created for Multi User Budget")
     })
 
     it("Verify Income/Expense stats for User One", () => {
