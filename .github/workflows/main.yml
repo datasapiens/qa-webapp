@@ -1,4 +1,4 @@
-name: Income-Expense app [Automated test]
+name: Cypress test
 
 on: [push]
 
@@ -14,7 +14,5 @@ jobs:
         run: npm install 
         working-directory: ./e2e 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          build: npm run build
-          start: npm start
+        run: npx cypress run
+        working-directory: ./e2e
