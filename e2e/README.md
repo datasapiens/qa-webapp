@@ -6,7 +6,9 @@ An automation framework called cypress is used for automating the test cases for
 
 Components of Cypress
 - Cypress Test Runner
-    - npx cypress open
+    - Cypress allows tests to run in a unique interactive runner that allows the user to see commands as they execute while also viewing the application under test. This is achieved using a component of Cypress called Test runner. For this project, please go inside the `e2e` folder and then use the command below to access test runner or, use makefile to run the command - `make test-gui` directly.
+    `npx cypress open`
+
 - Cypress Dashboard
     - Use this invitation link to join a project I created for this automated suite. Cypress dashboard can be used to provide insights on tests ran, DOM request/response, recorded videos, screenshots so that we understand the tests better. 
     
@@ -50,12 +52,16 @@ e2e
 
 - Fixtures: 
     All test data has been stored inside fixtures folder. This is a recommended practice encouraged by cypress and, allows effective capture of test data in our main test suite file.
+
 - integration: 
-    The integration folder consists of our main test script file.
+    The integration folder consists of our main test script file. `budget-app.spec.js` is the main test suite file which governs the entire automated test of this particular app.
+
 - plugins: 
-    The plugins folder contains a js file where we need to declare any plugins that we might use for testing purpose. In our case, a plugin has been used to log messages in headless mode. 
+    The plugins folder contains a js file where we need to declare any plugins that we might use for testing purpose. In our case, a plugin has been used to log messages in headless mode.
+
 - support: 
-    Here is where all the magic happens. Cypress basically allows developers to create custom commands and there commands are declared in a commands.js file. Here in our case too, we have made use to multiple custom commands and used those re-usable commands in the test. 
+    Here is where all the magic happens. Cypress basically allows developers to create custom commands and there commands are declared in a commands.js file. Here in our case too, we have made use to multiple custom commands and used those re-usable commands in the test.
+    
 - cypress.json: 
     This is a cypress configuration file where we include items required to configure cypress behaviour. 
 

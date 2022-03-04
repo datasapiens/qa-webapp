@@ -1,4 +1,4 @@
-describe("Verify End to End Test of Budget Web App", function() {
+describe("Verify End to End Test of Income Expense Web App", function() {
 
     let userData;
     let budgetData;
